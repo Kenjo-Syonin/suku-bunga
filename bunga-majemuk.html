@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Suku Bunga Majemuk</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      width: 50%;
+      margin: 40px auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Suku Bunga Majemuk</h2>
+    <form>
+      <label for="principal">Modal Awal (Rp)</label>
+      <input type="number" id="principal" name="principal"><br><br>
+      <label for="rate">Suku Bunga (%)</label>
+      <input type="number" id="rate" name="rate"><br><br>
+      <label for="time">Waktu (tahun)</label>
+      <input type="number" id="time" name="time"><br><br>
+      <label for="frequency">Frekuensi Bunga (tahun)</label>
+      <input type="number" id="frequency" name="frequency"><br><br>
+      <input type="submit" value="Hitung">
+    </form>
+    <br>
+    <div id="result"></div>
+    <br>
+    <a href="index.html"><button>Cari Suku Bunga Tunggal</button></a> <br>
+    <br>
+    <a href="modal-awal-tunggal.html"><button>Cari Modal Awal Bunga Tunggal</button></a> <br>
+    <br>
+    <a href="bunga-majemuk.html"><button>Cari Suku Bunga Majemuk</button></a> <br>
+    <br>
+    <a href="modal-awal-majemuk.html"><button>Cari Modal Awal Bunga Majemuk</button></a>
+
+  </div>
+
+  <script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const principal = document.querySelector('#principal').value;
+      const rate = document.querySelector('#rate').value / 100;
+      const time = document.querySelector('#time').value;
+      const frequency = document.querySelector('#frequency').value;
+      const n = frequency * time;
+      const result = principal * (1 + rate / frequency) ** n;
+      document.querySelector('#result').innerHTML = `Hasil: Rp ${result.toFixed(2)}`;
+    });
+  </script>
+</body>
+</html>
